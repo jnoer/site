@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/testing" isTestSource="true" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" scope="TEST" name="hamcrest-core-1.3" level="project" />
+    <orderEntry type="library" scope="TEST" name="junit-4.11" level="project" />
+    <orderEntry type="library" exported="" name="commons-collections-3.2" level="project" />
+    <orderEntry type="library" exported="" name="servlet-api-2.5" level="project" />
+    <orderEntry type="library" scope="TEST" name="geronimo-jaspic_1.0_spec-1.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="geronimo-annotation_1.0_spec-1.1.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="asm-3.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="jsp-2.1-glassfish-2.1.v20100127" level="project" />
+    <orderEntry type="library" scope="TEST" name="geronimo-jta_1.1_spec-1.1.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="asm-tree-3.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="ecj-3.5.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="jsp-api-2.1-glassfish-2.1.v20100127" level="project" />
+    <orderEntry type="library" scope="TEST" name="jetty-util-7.4.5.v20110725" level="project" />
+    <orderEntry type="library" scope="TEST" name="jetty-all-7.4.5.v20110725" level="project" />
+    <orderEntry type="library" scope="TEST" name="activation-1.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="ant-1.6.5" level="project" />
+    <orderEntry type="library" scope="TEST" name="mail-1.4.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="asm-commons-3.1" level="project" />
+  </component>
+</module>
+

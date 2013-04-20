@@ -1,0 +1,41 @@
+//apply plugin: 'idea'
+//apply plugin: 'groovy'
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'maven'
+apply plugin: 'jetty'
+
+group = 'jno'
+version = '0.1-SNAPSHOT'
+webAppDirName = 'web'
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+        resources {
+            srcDir 'resources'
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
+    testCompile group: 'junit', name: 'junit', version: '4.+'
+    providedCompile group: 'javax.servlet', name: 'servlet-api', version: '2.5'
+
+    // Local Jetty
+    testCompile group: 'org.eclipse.jetty.aggregate', name: 'jetty-all', version: '7.4.5.v20110725'
+    testCompile group: 'org.eclipse.jetty', name: 'jetty-util', version: '7.4.5.v20110725'
+
+    //compile group: 'org.eclipse.jetty', name: 'jetty-jsp-2.1', version: '7.4.5.v20110725' //you might think this *would* supply JSP support... *surprise* it doesn't!
+    testCompile group: 'org.mortbay.jetty', name: 'jsp-2.1-glassfish', version: '2.1.v20100127'
+}
