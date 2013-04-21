@@ -1,12 +1,15 @@
 package jno;
 
 //import com.sun.jdi.connect.Connector;
+
 import org.eclipse.jetty.server.Connector;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.nio.SelectChannelConnector;
 import org.eclipse.jetty.util.component.AbstractLifeCycle;
 import org.eclipse.jetty.util.component.LifeCycle;
 import org.eclipse.jetty.webapp.WebAppContext;
+import org.eclipse.jetty.webapp.WebInfConfiguration;
+import org.eclipse.jetty.webapp.WebXmlConfiguration;
 
 public class AppRunner
 {
@@ -43,6 +46,10 @@ public class AppRunner
         WebAppContext context = new WebAppContext();
         context.setContextPath("/");
         context.setWar("web");
+
+        context.setConfigurationClasses(new String[] { WebInfConfiguration.class.getName(), WebXmlConfiguration.class.getName() });
+        context.setParentLoaderPriority(true);
+
         //context.setInitParameter(SessionManager.__CheckRemoteSessionEncoding, "true"); // Stops Jetty from adding 'jsessionid' URL rewriting into non-local URLs (e.g. Google OpenId redirects)
 
         server.setHandler(context);
