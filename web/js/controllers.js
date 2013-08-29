@@ -3,8 +3,8 @@
 /* Controllers */
 
 angular.module('myApp.controllers', []).
-  controller('MyCtrl1', ['$scope', 'Phone', function($scope, Phone) {
-    $scope.phones = Phone.query();
+  controller('MyCtrl1', ['$scope', 'User', function($scope, User) {
+    $scope.users = User.query();
   }])
   .controller('LoginCtrl', [function() {
 
