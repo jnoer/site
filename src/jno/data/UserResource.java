@@ -2,10 +2,9 @@ package jno.data;
 
 import jno.data.entities.User;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 /**
@@ -22,8 +21,18 @@ public class UserResource {
      * @return String that will be returned as a text/plain response.
      */
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<User> getIt() {
-        return UserDAO.getUserById(1L);
+    public List<User> getAll() {
+        return UserDAO.getAll();
+    }
+
+    @DELETE
+    @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+//    @Consumes(MediaType.APPLICATION_JSON)
+    public Response deleteUser(@QueryParam("id") final String id)
+//    public Response deleteUser(User user)
+    {
+        UserDAO.deleteUser(new Long(id));
+//        UserDAO.deleteUser(user.getId());
+        return Response.ok().build();
     }
 }

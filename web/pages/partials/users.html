@@ -1,0 +1,16 @@
+<p>Users</p>
+
+
+<ul class="users">
+    <li ng-repeat="user in users">
+        <form class="form-horizontal">
+            {{user.id}} - {{user.userName}}
+            <!--Name: <input type="text" style="display:inline" ng-model="user.userName" /><br />-->
+
+            <button class="btn-small" style="display:inline" ng-click="destroy(user)"><i class="glyphicon glyphicon-trash"></i></button>
+        </form>
+
+    </li>
+
+
+</ul>

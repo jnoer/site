@@ -2,13 +2,18 @@
 
 
 // Declare app level module which depends on filters, and services
-angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives', 'myApp.controllers', 'userServices'])
+angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives', 'myApp.controllers', 'userServices', 'ngRoute', 'ngLocale'])
   .config(['$routeProvider', function($routeProvider) {
     //$routeProvider.when('/login', {templateUrl: 'partials/login.html', controller: 'LoginCtl'});
-    $routeProvider.when('/view1', {templateUrl: 'partials/partial1.html', controller: 'MyCtrl1'});
+    $routeProvider.when('/users', {templateUrl: 'partials/users.html', controller: 'UserCtrl'});
     $routeProvider.otherwise({redirectTo: '/login'});
   }])
   .config(function($httpProvider) {
+
+    $httpProvider.defaults.headers["delete"] = {
+      'Content-Type': 'application/json;charset=utf-8'
+    };
+
     var interceptor = ['$rootScope','$q', function(scope, $q) {
 
       function success(response) {
@@ -47,4 +52,3 @@ angular.module('Login', ['myApp.filters', 'myApp.services', 'myApp.directives', 
             when('/login', {templateUrl: 'partials/login.html', controller: 'LoginCtrl'}).
             otherwise({redirectTo:'/login'});
     }]);
-

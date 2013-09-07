@@ -9,3 +9,9 @@ CREATE TABLE `users` (
   KEY `idx_uuid` (`uuid`),
   KEY `index_username` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+insert into users values(1,1, 'Jason', uuid(), 'a', null);
+insert into users values(2,2, 'Valerie', uuid(), 'a', null);
+insert into users values(3,3, 'Tom', uuid(), 'a', null);
+insert into users values(4,4, 'Jerry', uuid(), 'a', null);
+insert into users values(5,5, 'SpongeBob', uuid(), 'a', null);

@@ -18,6 +18,7 @@ angular.module('myApp.services', []).
 angular.module('userServices', ['ngResource']).
     factory('User', function($resource){
   return $resource('/rest/user', {}, {
-    query: {method:'GET', params:{userId:'user'}, isArray:true}
+    query: {method:'GET', isArray:true},
+    destroy: {method:'DELETE'}
   });
 });
