@@ -26,8 +26,8 @@ public class UserResource {
     }
 
     @DELETE
-//    @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+//    @Consumes(MediaType.APPLICATION_JSON)
     public Response deleteUser(@QueryParam("id") final String id)
 //    public Response deleteUser(User user)
     {

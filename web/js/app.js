@@ -12,7 +12,6 @@ angular.module('myApp', ['myApp.controllers', 'myApp.data', 'ngRoute', 'ngLocale
   .config(function($httpProvider) {
 
     // sends content type json to avoid error on rest calls - doesn't work
-//    $httpProvider.defaults.headers["delete"] = {
     $httpProvider.defaults.headers["DELETE"] = {
       'Content-Type': 'application/json;charset=utf-8'
     };
