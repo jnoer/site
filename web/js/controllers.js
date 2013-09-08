@@ -6,18 +6,17 @@ angular.module('myApp.controllers', []).
   controller('UserCtrl', ['$scope', 'User', function($scope, User) {
     $scope.users = User.query();
 
-    $scope.destroy = function(user) {
-       var oldUsers = $scope.users;
+    $scope.destroy = function(index) {
+       var userToDelete = $scope.users[index];
 
-       $scope.users = [];
+       $scope.users.splice(index, 1);
 
-       angular.forEach(oldUsers, function(currentUser) {
-         if (currentUser !== user) $scope.users.push(user);
-       });
-
-       User.destroy(user);
+       User.destroy(userToDelete);
      };
   }])
-  .controller('LoginCtrl', [function() {
-
-  }]);
+  .controller('UserDetailCtrl', ['$scope', '$routeParams', 'User', function() {
+     $scope.user = User.query($routeParams.id);
+  }])
+//  .controller('LoginCtrl', [function() {
+//  }])
+  ;

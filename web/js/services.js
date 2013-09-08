@@ -15,10 +15,3 @@ angular.module('myApp.services', []).
 //  });
 //});
 
-angular.module('userServices', ['ngResource']).
-    factory('User', function($resource){
-  return $resource('/rest/user', {}, {
-    query: {method:'GET', isArray:true},
-    destroy: {method:'DELETE'}
-  });
-});

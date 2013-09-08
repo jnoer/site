@@ -6,8 +6,7 @@
         <form class="form-horizontal">
             {{user.id}} - {{user.userName}}
             <!--Name: <input type="text" style="display:inline" ng-model="user.userName" /><br />-->
-
-            <button class="btn-small" style="display:inline" ng-click="destroy(user)"><i class="glyphicon glyphicon-trash"></i></button>
+            <button class="btn-small" style="display:inline" ng-click="destroy($index)"><i class="glyphicon glyphicon-trash"></i></button>
         </form>
 
     </li>
