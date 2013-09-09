@@ -25,14 +25,18 @@ public class UserResource {
         return UserDAO.getAll();
     }
 
+    @GET
+    @Path("{id}")
+    public User get(@PathParam("id") String id) {
+        return UserDAO.getById(new Long(id));
+    }
+
     @DELETE
+    @Path("{id}")
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-//    @Consumes(MediaType.APPLICATION_JSON)
-    public Response deleteUser(@QueryParam("id") final String id)
-//    public Response deleteUser(User user)
+    public Response deleteUser(@PathParam("id") String id)
     {
         UserDAO.deleteUser(new Long(id));
-//        UserDAO.deleteUser(user.getId());
         return Response.ok().build();
     }
 }

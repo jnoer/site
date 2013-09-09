@@ -2,19 +2,27 @@
 
 
 // Declare app level module
-angular.module('myApp', ['myApp.controllers', 'myApp.data', 'ngRoute', 'ngLocale'])  // including ngLocale to fix error, but doesn't work
-  .config(['$routeProvider', function($routeProvider) {
-    //$routeProvider.when('/login', {templateUrl: 'partials/login.html', controller: 'LoginCtl'});
-    $routeProvider.when('/users', {templateUrl: 'partials/users.html', controller: 'UserCtrl'});
-    $routeProvider.when('/user/:id', {templateUrl: 'partials/userDetail.html', controller: 'UserCtrl'});
-    $routeProvider.otherwise({redirectTo: '/login'});
-  }])
-  .config(function($httpProvider) {
+var myApp = angular.module('myApp', ['myApp.controllers', 'myApp.data', 'ngRoute', 'ngLocale']);  // including ngLocale to fix error, but doesn't work
 
-    // sends content type json to avoid error on rest calls - doesn't work
-    $httpProvider.defaults.headers["DELETE"] = {
-      'Content-Type': 'application/json;charset=utf-8'
-    };
+myApp.config(['$routeProvider', function($routeProvider) {
+    //$routeProvider.when('/login', {templateUrl: 'partials/login.html', controller: 'LoginCtl'});
+    $routeProvider.when('/users',
+        {
+            templateUrl: 'partials/users.html',
+            controller: 'UserCtrl',
+            resolve: {users: function(MultiUserLoader) {return MultiUserLoader();} }
+        }
+    );
+
+    $routeProvider.when('/user/:id', {templateUrl: 'partials/userDetail.html', controller: 'UserDetailCtrl'});
+    $routeProvider.otherwise({redirectTo: '/login'});
+}]);
+
+
+myApp.config(function($httpProvider) {
+
+    // Sends content type json to avoid error on rest DELETE - doesn't work.  See http://stackoverflow.com/questions/17379447/angularjs-and-jersey-rest-delete-operation-fails-with-415-status-code
+    $httpProvider.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
 
 // Login stuff
 //    var interceptor = ['$rootScope','$q', function(scope, $q) {
@@ -47,4 +55,4 @@ angular.module('myApp', ['myApp.controllers', 'myApp.data', 'ngRoute', 'ngLocale
 //
 //    }];
 //    $httpProvider.responseInterceptors.push(interceptor);
-  });
+});

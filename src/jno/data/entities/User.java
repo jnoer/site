@@ -15,6 +15,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class User {
     Long id;
     String userName;
+    Long uuid;
+    String guid;
 
     @Id
     @GeneratedValue(generator="increment")
@@ -35,4 +37,22 @@ public class User {
     public void setUserName(String userName) {
         this.userName = userName;
     }
+
+    public Long getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(Long uuid) {
+        this.uuid = uuid;
+    }
+
+    public String getGuid() {
+        return guid;
+    }
+
+    public void setGuid(String guid) {
+        this.guid = guid;
+    }
+
+
 }
