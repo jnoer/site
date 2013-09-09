@@ -15,6 +15,14 @@ myApp.config(['$routeProvider', function($routeProvider) {
     );
 
     $routeProvider.when('/user/:id', {templateUrl: 'partials/userDetail.html', controller: 'UserDetailCtrl'});
+
+    $routeProvider.when('/editUser/:id',
+        {
+            templateUrl: 'partials/userEdit.html',
+            controller: 'UserEditCtrl',
+            resolve: {user: function(UserLoader) {return UserLoader();} }
+        });
+
     $routeProvider.otherwise({redirectTo: '/login'});
 }]);
 

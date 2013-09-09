@@ -20,3 +20,16 @@ dataModule.factory('MultiUserLoader', ['User', '$q', function(User, $q) {
         return delay.promise;
     };
 }]);
+
+dataModule.factory('UserLoader', ['User', '$q', '$route', function(User, $q, $route) {
+    return function() {
+        var delay = $q.defer();
+
+        User.get({id:$route.current.params.id},
+            function(user) {delay.resolve(user);},
+            function() {delay.reject('Unable to fetch users');}
+        );
+
+        return delay.promise;
+    };
+}]);

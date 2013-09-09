@@ -40,4 +40,17 @@ public class UserDAO {
         query.executeUpdate();
         session.getTransaction().commit();
     }
+
+    public static void save(User user)
+    {
+        User existingUser = getById(user.getId());
+
+        Session session = HibernateListener.sessionFactory.getCurrentSession();
+        session.beginTransaction();
+//
+        existingUser.setUserName(user.getUserName());
+
+        session.saveOrUpdate(existingUser);
+        session.getTransaction().commit();
+    }
 }

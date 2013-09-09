@@ -3,15 +3,14 @@ CREATE TABLE `users` (
   `uuid` varchar(36) NOT NULL,
   `username` varchar(255) NOT NULL,
   `guid` varchar(255) DEFAULT NULL,
-  `hashedPassword` varchar(255) NOT NULL,
   `dateDeleted` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_uuid` (`uuid`),
   KEY `index_username` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
-insert into users values(1,1, 'Jason', uuid(), 'a', null);
-insert into users values(2,2, 'Valerie', uuid(), 'a', null);
-insert into users values(3,3, 'Tom', uuid(), 'a', null);
-insert into users values(4,4, 'Jerry', uuid(), 'a', null);
-insert into users values(5,5, 'SpongeBob', uuid(), 'a', null);
+insert into users values(1,1, 'Jason', uuid(), null);
+insert into users values(2,2, 'Valerie', uuid(), null);
+insert into users values(3,3, 'Tom', uuid(), null);
+insert into users values(4,4, 'Jerry', uuid(), null);
+insert into users values(5,5, 'SpongeBob', uuid(), null);

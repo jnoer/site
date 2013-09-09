@@ -1,0 +1,15 @@
+Edit {{user.id}}
+
+<form name="userForm" ng-submit="save()" class="form-horizontal">
+    <div class="control-group">
+        <label class="control-label" for="name">Name:</label>
+
+        <div class="controls">
+            <input ng-model="user.userName" class="input-xlarge" id="name" focus required>
+        </div>
+    </div>
+
+    <div class="form-actions">
+        <button class="btn btn-primary" ng-disabled="userForm.$invalid">Save </button>
+    </div>
+</form>

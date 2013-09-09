@@ -31,6 +31,12 @@ public class UserResource {
         return UserDAO.getById(new Long(id));
     }
 
+    @POST
+    @Path("{id}")
+    public void get(User user) {
+        UserDAO.save(user);
+    }
+
     @DELETE
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
