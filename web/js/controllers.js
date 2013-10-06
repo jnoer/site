@@ -15,14 +15,22 @@ controllerModule.controller('UserCtrl', ['$scope', 'users', function($scope, use
 
        userToDelete.$delete();
      };
-  }]);
+}]);
+
+controllerModule.controller('NewUserCtrl', ['$scope', 'User', function($scope, User) {
+    $scope.newUser = {};
+
+    $scope.create = function() {
+        User.save($scope.newUser);
+    };
+}]);
 
 controllerModule.controller('UserDetailCtrl', ['$scope', '$routeParams', '$location', 'User', function($scope, $routeParams, $location, User) {
      $scope.user = User.get({id:$routeParams.id});
 
      $scope.edit = function() { $location.path('editUser/' + $scope.user.id);
      };
-  }]);
+}]);
 
 controllerModule.controller('UserEditCtrl', ['$scope', '$location', 'user', function($scope, $location, user) {
     $scope.user = user;

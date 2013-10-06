@@ -32,14 +32,12 @@ public class UserResource {
     }
 
     @POST
-    @Path("{id}")
-    public void get(User user) {
+    public void saveUser(User user) {
         UserDAO.save(user);
     }
 
     @DELETE
     @Path("{id}")
-    @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public Response deleteUser(@PathParam("id") String id)
     {
         UserDAO.deleteUser(new Long(id));

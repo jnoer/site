@@ -14,6 +14,13 @@ myApp.config(['$routeProvider', function($routeProvider) {
         }
     );
 
+    $routeProvider.when('/new',
+        {
+            templateUrl: 'partials/newUser.html',
+            controller: 'NewUserCtrl'
+        }
+    );
+
     $routeProvider.when('/user/:id', {templateUrl: 'partials/userDetail.html', controller: 'UserDetailCtrl'});
 
     $routeProvider.when('/editUser/:id',

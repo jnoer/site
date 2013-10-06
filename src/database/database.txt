@@ -1,6 +1,6 @@
 CREATE TABLE `users` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `uuid` varchar(36) NOT NULL,
+  `uuid` varchar(36),
   `username` varchar(255) NOT NULL,
   `guid` varchar(255) DEFAULT NULL,
   `dateDeleted` datetime DEFAULT NULL,

@@ -43,14 +43,23 @@ public class UserDAO {
 
     public static void save(User user)
     {
-        User existingUser = getById(user.getId());
+        User userToSave = null;
+
+        if(user.getId() != null)
+        {
+            userToSave = getById(user.getId());
+        }
+        else
+        {
+            userToSave = new User();
+        }
 
         Session session = HibernateListener.sessionFactory.getCurrentSession();
         session.beginTransaction();
 //
-        existingUser.setUserName(user.getUserName());
+        userToSave.setUserName(user.getUserName());
 
-        session.saveOrUpdate(existingUser);
+        session.saveOrUpdate(userToSave);
         session.getTransaction().commit();
     }
 }
