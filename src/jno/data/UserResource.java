@@ -32,7 +32,13 @@ public class UserResource {
     }
 
     @POST
+    @Path("{id}")
     public void saveUser(User user) {
+        UserDAO.save(user);
+    }
+
+    @POST
+    public void saveNewUser(User user) {
         UserDAO.save(user);
     }
 
