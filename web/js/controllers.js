@@ -44,8 +44,15 @@ controllerModule.controller('NewUserCtrl', ['$scope', '$location', 'userDao', 'R
     }
 }]);
 
-controllerModule.controller('ListCtrl', ['$scope', 'items', function($scope, items) {    //users is passed in from the $routeProvider
+controllerModule.controller('ListCtrl', ['$scope', 'items', 'itemDao', function($scope, items, itemDao) {    //items is passed in from the $routeProvider
     $scope.items = items;
+
+    $scope.addItem = function() {
+        var item = {name: $scope.itemName};
+        $scope.items.push(item);
+        $scope.itemName = '';
+        itemDao.create(item);
+    };
 
     $scope.destroy = function(index) {
         var itemToDelete = $scope.items[index];

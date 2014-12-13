@@ -1,10 +1,11 @@
-<p>My List</p>
+<form ng-submit="addItem()">
+    <input id="itemInput" type="text" ng-model="itemName" size="30" placeholder="Add item">
+    <input class="btn-primary" type="submit" value="add">
+</form>
 
 <ul class="users">
     <li ng-repeat="item in items">
-        <form class="form-horizontal">
-            {{item.name}}
-            <button class="btn-small" style="display:inline" ng-click="destroy($index)"><i class="glyphicon glyphicon-trash"></i></button>
-        </form>
+        {{item.name}}
+        <button class="btn-small" style="display:inline" ng-click="destroy($index)"><i class="glyphicon glyphicon-trash"></i></button>
     </li>
 </ul>

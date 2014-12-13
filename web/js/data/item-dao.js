@@ -5,5 +5,10 @@ appModule.service('itemDao', ['Restangular', function(Restangular){
 
 	this.getAll = function() {
 		return Restangular.all(baseUrl).getList();
+	};
+
+	this.create = function(item) {
+		var items = Restangular.all(baseUrl);
+		items.post(item);
 	}
 }]);
