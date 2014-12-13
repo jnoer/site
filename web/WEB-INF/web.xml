@@ -25,10 +25,15 @@
             <param-value>true</param-value>
         </init-param>
     </servlet>
+
     <servlet-mapping>
         <servlet-name>restServlet</servlet-name>
         <url-pattern>/rest/*</url-pattern>
     </servlet-mapping>
+
+    <welcome-file-list>
+        <welcome-file>pages/index.html</welcome-file>
+    </welcome-file-list>
 
     <listener>
         <description>HibernateListener</description>
