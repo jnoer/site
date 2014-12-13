@@ -2,14 +2,15 @@
 
 
 // Declare app level module
-var appModule = angular.module('myApp', ['myApp.controllers', 'restangular', 'ngRoute', 'ngLocale']);  // including ngLocale to fix error, but doesn't work
+var appModule = angular.module('myApp', ['myApp.controllers', 'restangular', 'ngRoute']);  // including ngLocale to fix error, but doesn't work
 
 appModule.config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/users',
         {
             templateUrl: 'partials/users.html',
             controller: 'UserCtrl',
-            resolve: {users: function(userDao) {
+            resolve: {  // Inject this dependency into the controller.
+                users: function(userDao) {
                     return userDao.getAll();
                 }
             }
@@ -39,7 +40,7 @@ appModule.config(['$routeProvider', function($routeProvider) {
     $routeProvider.otherwise({redirectTo: '/login'});
 }]);
 
-appModule.config(function($httpProvider) {
+appModule.config(['$httpProvider', function($httpProvider) {
 
     // Sends content type json to avoid error on rest DELETE - doesn't work.  See http://stackoverflow.com/questions/17379447/angularjs-and-jersey-rest-delete-operation-fails-with-415-status-code
     $httpProvider.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
@@ -75,4 +76,4 @@ appModule.config(function($httpProvider) {
 //
 //    }];
 //    $httpProvider.responseInterceptors.push(interceptor);
-});
+}]);
