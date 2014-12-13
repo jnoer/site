@@ -4,8 +4,7 @@
 
 var controllerModule = angular.module('myApp.controllers', []);
 
-//  controller('UserCtrl', ['$scope', 'User', function($scope, User) {
-controllerModule.controller('UserCtrl', ['$scope', 'users', function($scope, users) {    //users is passed in from the $routeProvider; a result of MultiUserLoader
+controllerModule.controller('UserCtrl', ['$scope', 'users', function($scope, users) {    //users is passed in from the $routeProvider
     $scope.users = users;
 
     $scope.destroy = function(index) {
@@ -13,20 +12,12 @@ controllerModule.controller('UserCtrl', ['$scope', 'users', function($scope, use
 
        $scope.users.splice(index, 1);
 
-       userToDelete.$delete();
+       userToDelete.remove();
      };
 }]);
 
-controllerModule.controller('NewUserCtrl', ['$scope', 'User', function($scope, User) {
-    $scope.newUser = {};
-
-    $scope.create = function() {
-        User.save($scope.newUser);
-    };
-}]);
-
-controllerModule.controller('UserDetailCtrl', ['$scope', '$routeParams', '$location', 'User', function($scope, $routeParams, $location, User) {
-     $scope.user = User.get({id:$routeParams.id});
+controllerModule.controller('UserDetailCtrl', ['$scope', '$routeParams', '$location', 'userDao', function($scope, $routeParams, $location, userDao) {
+     userDao.get($routeParams.id).get().then(function(data){$scope.user = data});
 
      $scope.edit = function() { $location.path('editUser/' + $scope.user.id);
      };
@@ -35,10 +26,20 @@ controllerModule.controller('UserDetailCtrl', ['$scope', '$routeParams', '$locat
 controllerModule.controller('UserEditCtrl', ['$scope', '$location', 'user', function($scope, $location, user) {
     $scope.user = user;
 
-    $scope.save = function() { $scope.user.$save(function(user) {
-        $location.path('/user/' + user.id);
-        });
+    $scope.save = function() {
+        $scope.user.post().then(function() {$location.path('/user/' + user.id);})
     };
 
     $scope.remove = function() { delete $scope.user; $location.path('/');};
+}]);
+
+controllerModule.controller('NewUserCtrl', ['$scope', '$location', 'userDao', 'Restangular', function($scope, $location, userDao, Restangular) {
+    $scope.newUser = {};
+
+    $scope.create = function()
+    {
+        var it = {userName:$scope.newUser.userName};
+        var users = Restangular.all("rest/user");
+        users.post(it);
+    }
 }]);

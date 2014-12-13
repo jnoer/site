@@ -2,15 +2,17 @@
 
 
 // Declare app level module
-var myApp = angular.module('myApp', ['myApp.controllers', 'myApp.data', 'ngRoute', 'ngLocale']);  // including ngLocale to fix error, but doesn't work
+var appModule = angular.module('myApp', ['myApp.controllers', 'restangular', 'ngRoute', 'ngLocale']);  // including ngLocale to fix error, but doesn't work
 
-myApp.config(['$routeProvider', function($routeProvider) {
-    //$routeProvider.when('/login', {templateUrl: 'partials/login.html', controller: 'LoginCtl'});
+appModule.config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/users',
         {
             templateUrl: 'partials/users.html',
             controller: 'UserCtrl',
-            resolve: {users: function(MultiUserLoader) {return MultiUserLoader();} }
+            resolve: {users: function(userDao) {
+                    return userDao.getAll();
+                }
+            }
         }
     );
 
@@ -27,14 +29,17 @@ myApp.config(['$routeProvider', function($routeProvider) {
         {
             templateUrl: 'partials/userEdit.html',
             controller: 'UserEditCtrl',
-            resolve: {user: function(UserLoader) {return UserLoader();} }
+            resolve: {
+                user: function(userDao, $route) {
+                    return userDao.get($route.current.params.id);
+                }
+            }
         });
 
     $routeProvider.otherwise({redirectTo: '/login'});
 }]);
 
-
-myApp.config(function($httpProvider) {
+appModule.config(function($httpProvider) {
 
     // Sends content type json to avoid error on rest DELETE - doesn't work.  See http://stackoverflow.com/questions/17379447/angularjs-and-jersey-rest-delete-operation-fails-with-415-status-code
     $httpProvider.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
