@@ -5,9 +5,21 @@
 var appModule = angular.module('myApp', ['myApp.controllers', 'restangular', 'ngRoute']);  // including ngLocale to fix error, but doesn't work
 
 appModule.config(['$routeProvider', function($routeProvider) {
+    $routeProvider.when('/list',
+        {
+            templateUrl: 'pages/partials/list.html',
+            controller: 'ListCtrl',
+            resolve: {  // Inject this dependency into the controller.
+                items: function(itemDao) {
+                    return itemDao.getAll();
+                }
+            }
+        }
+    );
+
     $routeProvider.when('/users',
         {
-            templateUrl: 'partials/users.html',
+            templateUrl: 'pages/partials/users.html',
             controller: 'UserCtrl',
             resolve: {  // Inject this dependency into the controller.
                 users: function(userDao) {
@@ -19,7 +31,7 @@ appModule.config(['$routeProvider', function($routeProvider) {
 
     $routeProvider.when('/new',
         {
-            templateUrl: 'partials/newUser.html',
+            templateUrl: 'pages/partials/newUser.html',
             controller: 'NewUserCtrl'
         }
     );
@@ -28,7 +40,7 @@ appModule.config(['$routeProvider', function($routeProvider) {
 
     $routeProvider.when('/editUser/:id',
         {
-            templateUrl: 'partials/userEdit.html',
+            templateUrl: 'pages/partials/userEdit.html',
             controller: 'UserEditCtrl',
             resolve: {
                 user: function(userDao, $route) {
@@ -37,13 +49,15 @@ appModule.config(['$routeProvider', function($routeProvider) {
             }
         });
 
-    $routeProvider.otherwise({redirectTo: '/login'});
+    //$routeProvider.otherwise({redirectTo: '/login'});
+    $routeProvider.otherwise({redirectTo: '/list'});
 }]);
 
-appModule.config(['$httpProvider', function($httpProvider) {
+appModule.config(['$httpProvider', '$locationProvider', function($httpProvider, $locationProvider) {
 
     // Sends content type json to avoid error on rest DELETE - doesn't work.  See http://stackoverflow.com/questions/17379447/angularjs-and-jersey-rest-delete-operation-fails-with-415-status-code
     $httpProvider.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
+    $locationProvider.html5Mode(true);
 
 // Login stuff
 //    var interceptor = ['$rootScope','$q', function(scope, $q) {

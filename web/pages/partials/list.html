@@ -1,0 +1,10 @@
+<p>My List</p>
+
+<ul class="users">
+    <li ng-repeat="item in items">
+        <form class="form-horizontal">
+            {{item.name}}
+            <button class="btn-small" style="display:inline" ng-click="destroy($index)"><i class="glyphicon glyphicon-trash"></i></button>
+        </form>
+    </li>
+</ul>

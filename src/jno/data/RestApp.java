@@ -15,6 +15,7 @@ public class RestApp extends Application {
         final Set<Class<?>> classes = new HashSet<Class<?>>();
         // register root resource
         classes.add(UserResource.class);
+        classes.add(ItemResource.class);
         return classes;
     }
 }

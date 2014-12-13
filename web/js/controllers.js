@@ -43,3 +43,15 @@ controllerModule.controller('NewUserCtrl', ['$scope', '$location', 'userDao', 'R
         users.post(it);
     }
 }]);
+
+controllerModule.controller('ListCtrl', ['$scope', 'items', function($scope, items) {    //users is passed in from the $routeProvider
+    $scope.items = items;
+
+    $scope.destroy = function(index) {
+        var itemToDelete = $scope.items[index];
+
+        $scope.items.splice(index, 1);
+
+        itemToDelete.remove();
+    };
+}]);
