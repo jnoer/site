@@ -7,7 +7,7 @@ var appModule = angular.module('myApp', ['myApp.controllers', 'restangular', 'ng
 appModule.config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/list',
         {
-            templateUrl: 'pages/partials/list.html',
+            templateUrl: 'partials/list.html',
             controller: 'ListCtrl',
             resolve: {  // Inject this dependency into the controller.
                 items: function(itemDao) {
@@ -19,7 +19,7 @@ appModule.config(['$routeProvider', function($routeProvider) {
 
     $routeProvider.when('/users',
         {
-            templateUrl: 'pages/partials/users.html',
+            templateUrl: 'partials/users.html',
             controller: 'UserCtrl',
             resolve: {  // Inject this dependency into the controller.
                 users: function(userDao) {
@@ -31,7 +31,7 @@ appModule.config(['$routeProvider', function($routeProvider) {
 
     $routeProvider.when('/new',
         {
-            templateUrl: 'pages/partials/newUser.html',
+            templateUrl: 'partials/newUser.html',
             controller: 'NewUserCtrl'
         }
     );
@@ -40,7 +40,7 @@ appModule.config(['$routeProvider', function($routeProvider) {
 
     $routeProvider.when('/editUser/:id',
         {
-            templateUrl: 'pages/partials/userEdit.html',
+            templateUrl: 'partials/userEdit.html',
             controller: 'UserEditCtrl',
             resolve: {
                 user: function(userDao, $route) {
@@ -57,7 +57,7 @@ appModule.config(['$httpProvider', '$locationProvider', function($httpProvider, 
 
     // Sends content type json to avoid error on rest DELETE - doesn't work.  See http://stackoverflow.com/questions/17379447/angularjs-and-jersey-rest-delete-operation-fails-with-415-status-code
     $httpProvider.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
-    $locationProvider.html5Mode(true);
+    //$locationProvider.html5Mode(true);
 
 // Login stuff
 //    var interceptor = ['$rootScope','$q', function(scope, $q) {
